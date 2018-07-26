@@ -1,30 +1,53 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 class Deck extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-              <Text>Deck.js</Text>
+                <View style={styles.deckDetails}>
+                        <Text style={{fontSize: 26}}>Deck Name</Text>
+                        <Text style={{fontSize: 18}}>10 Cards</Text>
+                </View>
+                <View style={styles.deckButtonsContainer}>
+                    <TouchableOpacity style={styles.deckButton}>
+                        <Text>Add Card</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.deckButton} onPress={() => this.props.navigation.navigate('Quiz')}>
+                        <Text>Start Quiz</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
-  deckDetails: {
-      flex: 4,
-      backgroundColor: '#fffeee',
-      justifyContent: 'center',
-      alignItems: 'center',
+    container: {
+        flex: 1,
+        backgroundColor: '#fffeee',
+        alignItems: 'stretch',
+        justifyContent: 'center',
+    },
+    deckDetails: {
+        flex: 3,
+        backgroundColor: '#fffeee',
+        justifyContent: 'center',
+        alignItems: 'center',
 
-  }
+    },
+    deckButtonsContainer: {
+        flex: 1,
+        justifyContent: 'space-evenly',
+        alignItems: 'stretch',
+        padding: 25
+    },
+    deckButton: {
+        alignItems: 'center',
+        backgroundColor: '#dddddd',
+        justifyContent: 'center',
+        padding: 20
+    }
 });
 
 export default Deck
