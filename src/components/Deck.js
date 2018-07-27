@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 class Deck extends React.Component {
     render() {
+        const {navigation} = this.props
         return (
             <View style={styles.container}>
                 <View style={styles.deckDetails}>
@@ -10,10 +11,10 @@ class Deck extends React.Component {
                         <Text style={{fontSize: 18}}>10 Cards</Text>
                 </View>
                 <View style={styles.deckButtonsContainer}>
-                    <TouchableOpacity style={styles.deckButton}>
+                    <TouchableOpacity style={styles.deckButton} onPress={() => navigation.navigate('AddCard')}>
                         <Text>Add Card</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.deckButton} onPress={() => this.props.navigation.navigate('Quiz')}>
+                    <TouchableOpacity style={styles.deckButton} onPress={() => navigation.navigate('Quiz')}>
                         <Text>Start Quiz</Text>
                     </TouchableOpacity>
                 </View>

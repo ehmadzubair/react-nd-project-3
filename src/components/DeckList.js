@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native'
 import Deck from './Deck'
 import {createStackNavigator} from 'react-navigation'
 import Quiz from "./Quiz";
+import AddCard from "./AddCard";
 
 class DeckList extends React.Component {
 
@@ -94,4 +95,5 @@ export default createStackNavigator({
         }
     },
     Quiz,
+    AddCard
 });
