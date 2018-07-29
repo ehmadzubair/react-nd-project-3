@@ -9,7 +9,12 @@ createBottomTabNavigator({
   DeckList,
   NewDeck
 }) : createMaterialTopTabNavigator({
-  DeckList,
+  DeckList: {
+      screen: DeckList,
+      navigationOptions: (navigation) => ({
+          tabBarVisible: navigation.navigation.state.index === 0
+      })
+  },
   NewDeck
 });
 export default Navigation

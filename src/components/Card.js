@@ -6,6 +6,7 @@ class Card extends React.Component {
         isShowingQuestion: true
     }
 
+
     render() {
         const {question, answer} = this.props
         const {isShowingQuestion} = this.state

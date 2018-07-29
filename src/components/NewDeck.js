@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import {saveDeckTitle} from "../data/Api";
 
 class NewDeck extends React.Component {
 
@@ -10,6 +11,7 @@ class NewDeck extends React.Component {
     handleSubmit = () => {
         const {text} = this.state
         this.setState({text: ''})
+        saveDeckTitle(text)
     }
 
     render() {
@@ -49,10 +51,10 @@ const styles = StyleSheet.create({
         alignItems: 'stretch'
     },
     button: {
-        backgroundColor: '#fffaaa',
+        backgroundColor: '#dddddd',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 30,
+        height: 50,
         marginTop: 15
     }
 

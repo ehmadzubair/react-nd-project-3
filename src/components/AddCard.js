@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native'
+import {addCardToDeck} from "../data/Api";
 
 class AddCard extends React.Component {
 
@@ -10,6 +11,15 @@ class AddCard extends React.Component {
     }
 
     handleAdd = () => {
+        const {navigation} = this.props
+        const deck = navigation.getParam('deck')
+
+        const {questionText, answerText} = this.state
+
+        addCardToDeck(deck.title, {
+            question: questionText,
+            answer: answerText
+        })
         this.setState({
             questionText: '',
             answerText: ''
@@ -17,6 +27,7 @@ class AddCard extends React.Component {
     }
 
     render() {
+
         return (
             <View style={styles.container}>
                 <TextInput
@@ -57,10 +68,10 @@ const styles = StyleSheet.create({
         margin: 10
     },
     button: {
-        backgroundColor: '#fffaaa',
+        backgroundColor: '#dddddd',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 30,
+        height: 50,
         marginTop: 15
     }
 

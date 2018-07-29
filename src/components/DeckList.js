@@ -4,44 +4,38 @@ import Deck from './Deck'
 import {createStackNavigator} from 'react-navigation'
 import Quiz from "./Quiz";
 import AddCard from "./AddCard";
+import {getDecks} from "../data/Api";
 
 class DeckList extends React.Component {
+    state = {
+        decks: {}
+    }
 
-    handlePress = (item) => {
+    componentDidMount() {
+        getDecks().then(results => {
+            const mappedResults = Object.keys(results).map((key) => results[key])
+            this.setState({decks: mappedResults})
+        })
+    }
+
+    handlePress = (deck) => {
         const {navigation} = this.props
-        navigation.navigate('Deck')
+        navigation.navigate('Deck', {deck})
     }
 
     render() {
-        const deckList = [
-            {
-                key: 'DeckName 1',
-                numCards: 10
-            }
-        ]
         return (
             <View style={styles.container}>
                 <FlatList
-                    data={[
-                        {key: 'Devin'},
-                        {key: 'Jackson'},
-                        {key: 'James'},
-                        {key: 'Joel'},
-                        {key: 'John'},
-                        {key: 'Jillian'},
-                        {key: 'Jimmy'},
-                        {key: 'Julie'},
-                        {key: 'Jimmy 2'},
-                        {key: 'Julie 2'},
-                    ]}
+                    data={this.state.decks}
+                    keyExtractor={(item) => item.title}
                     renderItem={({item}) => (
                         <TouchableOpacity
                             onPress={() => this.handlePress(item)}
                         >
-
                             <View style={styles.itemContainer}>
-                                <Text style={styles.itemTitle}>{item.key}</Text>
-                                <Text style={styles.itemSubtitle}>{item.key}</Text>
+                                <Text style={styles.itemTitle}>{item.title}</Text>
+                                <Text style={styles.itemSubtitle}>{item.questions.length} Card(s)</Text>
                             </View>
                         </TouchableOpacity>)}
                 />
