@@ -15,6 +15,11 @@ createBottomTabNavigator({
           tabBarVisible: navigation.navigation.state.index === 0
       })
   },
-  NewDeck
+  NewDeck: {
+      screen: NewDeck,
+      navigationOptions: (navigation) => ({
+          tabBarVisible: navigation.navigation.state.index === 0
+      })
+  }
 });
 export default Navigation

@@ -4,7 +4,6 @@ import {getDecks} from "../data/Api";
 
 class Deck extends React.Component {
 
-
     render() {
         const {navigation} = this.props
         const deck = navigation.getParam('deck')

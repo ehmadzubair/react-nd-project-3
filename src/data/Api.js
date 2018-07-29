@@ -28,6 +28,7 @@ export function saveDeckTitle(title) {
             questions: []
         }
     }))
+    return title
 
 }
 

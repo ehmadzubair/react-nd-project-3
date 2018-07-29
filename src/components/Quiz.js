@@ -44,6 +44,21 @@ class Quiz extends React.Component {
         )
     }
 
+    handleRestartQuiz = () => {
+        this.setState({
+            currentQuestionIndex: 0,
+            correctQuestions: 0,
+            incorrectQuestions: 0,
+            isComplete: false,
+            isShowingQuestion: true
+        })
+    }
+
+    handleBackToDeck = () => {
+        const {navigation} = this.props
+        navigation.pop()
+    }
+
     render() {
         const {isShowingQuestion, currentQuestionIndex, isComplete, correctQuestions} = this.state
         const {navigation} = this.props
@@ -59,6 +74,12 @@ class Quiz extends React.Component {
             return (
                 <View style={styles.resultContainer}>
                     <Text style={{fontSize: 28}}>Correct Answers: {(correctQuestions / deck.questions.length) * 100}%</Text>
+                    <TouchableOpacity style={styles.deckButton} onPress={this.handleRestartQuiz}>
+                        <Text>Restart Quiz</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.deckButton} onPress={this.handleBackToDeck}>
+                        <Text>Back To Deck</Text>
+                    </TouchableOpacity>
                 </View>
             )
         }
@@ -106,7 +127,7 @@ const styles = StyleSheet.create({
     resultContainer: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
     },
     infoContainer: {
@@ -131,6 +152,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#dddddd',
         justifyContent: 'center',
+        margin: 20,
         padding: 20
     }
 });

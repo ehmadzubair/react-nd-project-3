@@ -1,6 +1,10 @@
 import React from 'react'
 import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
-import {saveDeckTitle} from "../data/Api";
+import {getDeck, saveDeckTitle} from "../data/Api";
+import Deck from "./Deck";
+import Quiz from "./Quiz";
+import AddCard from "./AddCard";
+import {createStackNavigator} from "react-navigation";
 
 class NewDeck extends React.Component {
 
@@ -10,8 +14,12 @@ class NewDeck extends React.Component {
 
     handleSubmit = () => {
         const {text} = this.state
+        const {navigation} = this.props
+
         this.setState({text: ''})
-        saveDeckTitle(text)
+        deckId = saveDeckTitle(text)
+
+        getDeck(deckId).then((deck) => navigation.navigate('Deck', {deck}))
     }
 
     render() {
@@ -60,4 +68,20 @@ const styles = StyleSheet.create({
 
 });
 
-export default NewDeck
+export default createStackNavigator({
+    NewDeck: {
+        screen: NewDeck,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Deck : {
+        screen: Deck,
+        navigationOptions: {
+            tabBarVisible: false
+        }
+    },
+    Quiz,
+    AddCard
+});
+
