@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import {clearLocalNotification} from "../Notifications";
 
 class Quiz extends React.Component {
 
@@ -28,6 +29,7 @@ class Quiz extends React.Component {
                 const deck = props.navigation.getParam('deck')
 
                 if (newQuestionIndex >= deck.questions.length) {
+                    clearLocalNotification()
                     return {
                         isComplete: true,
                         ...correctness

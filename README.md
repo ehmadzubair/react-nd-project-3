@@ -5,3 +5,7 @@
 
 ### Platforms Tested
 * Android
+
+### Supporting Platforms
+* iOS
+* Android

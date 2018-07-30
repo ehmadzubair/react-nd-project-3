@@ -26,11 +26,12 @@ class DeckList extends React.Component {
     }
 
     render() {
+        const {decks} = this.state
         return (
             <View style={styles.container}>
-                {this.state.decks &&
+                {decks.length != 0 &&
                 <FlatList
-                    data={this.state.decks}
+                    data={decks}
                     keyExtractor={(item) => item.title}
                     renderItem={({item}) => (
                         <TouchableOpacity
