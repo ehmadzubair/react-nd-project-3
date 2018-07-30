@@ -4,12 +4,7 @@ CARDS_STORAGE_KEY = 'CARDS_STORE'
 
 
 export function getDecks() {
-    return new Promise((resolve, reject) => {
-        AsyncStorage.getItem(CARDS_STORAGE_KEY).then((results) => {
-            console.log(JSON.parse(results))
-            resolve(JSON.parse(results))
-        })
-    })
+    return AsyncStorage.getItem(CARDS_STORAGE_KEY).then(JSON.parse)
 }
 
 export function getDeck(id) {

@@ -13,8 +13,10 @@ class DeckList extends React.Component {
 
     componentDidMount() {
         getDecks().then(results => {
-            const mappedResults = Object.keys(results).map((key) => results[key])
+            const mappedResults = results ? Object.keys(results).map((key) => results[key]) : []
             this.setState({decks: mappedResults})
+        }).catch((error) => {
+            console.log(error)
         })
     }
 
@@ -26,6 +28,7 @@ class DeckList extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                {this.state.decks &&
                 <FlatList
                     data={this.state.decks}
                     keyExtractor={(item) => item.title}
@@ -39,6 +42,7 @@ class DeckList extends React.Component {
                             </View>
                         </TouchableOpacity>)}
                 />
+                }
             </View>
         )
     }

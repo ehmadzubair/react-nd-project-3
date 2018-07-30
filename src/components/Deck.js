@@ -18,7 +18,12 @@ class Deck extends React.Component {
                     <TouchableOpacity style={styles.deckButton} onPress={() => navigation.navigate('AddCard', {deck})}>
                         <Text>Add Card</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.deckButton} onPress={() => navigation.navigate('Quiz', {deck})}>
+                    <TouchableOpacity
+                        style={styles.deckButton}
+                        onPress={() => navigation.navigate('Quiz', {deck})}
+                        disabled={deck.questions.length == 0}
+
+                    >
                         <Text>Start Quiz</Text>
                     </TouchableOpacity>
                 </View>
